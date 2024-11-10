@@ -1,0 +1,30 @@
+name: Sync to Parent Repository
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Git user
+      run: |
+        git config --global user.name 'antjimort-bot'
+        git config --global user.email 'github.bot.antjimort@gmail.com'
+
+    - name: Add parent repository as remote
+      run: |
+        git remote add parent https://github.com/antjimort-org-test/test.git
+        git fetch parent 
+
+    - name: Push changes to develop branch of parent repo
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_BOT }}
+      run: |
+        git push https://x-access-token:${{ secrets.PAT_BOT }}@github.com/antjimort-org-test/test.git master:develop
