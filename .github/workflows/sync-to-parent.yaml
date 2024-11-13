@@ -15,8 +15,8 @@ jobs:
 
     - name: Set up Git user
       run: |
-        git config --global user.name 'antjimort-bot'
-        git config --global user.email 'github.bot.antjimort@gmail.com'
+        git config --global user.name 'salmorejobot'
+        git config --global user.email 'salmorejobot@outlook.com'
 
     - name: Add parent repository as remote
       run: |
